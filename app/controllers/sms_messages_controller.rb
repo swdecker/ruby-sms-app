@@ -25,7 +25,7 @@ class SmsMessagesController < ApplicationController
         subaccount_auth_token = Rails.application.credentials[:PLIVO][:SUBACCOUNT_AUTH_TOKEN]
         api = RestClient.new(subaccount_auth_id, subaccount_auth_token)
         response = api.messages.list(
-            message_direction: 'inbound',
+            # message_direction: 'inbound',
             subaccount: subaccount_auth_id
         )
         #   attempted to iterate on objects "array"
@@ -40,21 +40,11 @@ class SmsMessagesController < ApplicationController
         end
         puts "return array we build"
         puts return_array
+
         # will need some checking to ensure all of history is grabbed
         # if response[:meta]["next"]==nil  
         # end
-        puts "are we getting here?"
-        puts '*****************************************'
-        puts "response[:objects][0].length"
-        puts response[:objects].length
-        puts '*****************************************'
-        # puts response[:objects][0].to_json()
-        # puts '*****************************************'
-        puts response[:objects].class
-        puts '*****************************************'
-        puts response[:objects]
-        puts '*****************************************'
-        puts response[:objects][0].class
+        
         
         render json: {response: return_array}
     end
