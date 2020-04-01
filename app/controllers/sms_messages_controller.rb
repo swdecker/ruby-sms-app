@@ -11,6 +11,7 @@ class SmsMessagesController < ApplicationController
         destination_number = "+19196739974"
         subaccount_auth_id = Rails.application.credentials[:PLIVO][:SUBACCOUNT_AUTH_ID]
         subaccount_auth_token = Rails.application.credentials[:PLIVO][:SUBACCOUNT_AUTH_TOKEN]
+        
         client = RestClient.new(subaccount_auth_id, subaccount_auth_token)
         message_created = client.messages.create(
         plivo_src_number,
